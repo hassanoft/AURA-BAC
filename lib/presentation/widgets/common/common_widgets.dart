@@ -168,22 +168,22 @@ class SectionTitle extends StatelessWidget {
 /// Custom AppBar with back button matching AURA style
 class AuraAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final List<Widget>? actions;
   final Widget? leading;
+  final List<Widget>? actions;
 
   const AuraAppBar({
     super.key,
     required this.title,
-    this.actions,
     this.leading,
+    this.actions,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title),
-      actions: actions,
       leading: leading,
+      actions: actions,
     );
   }
 
