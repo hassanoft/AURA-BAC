@@ -1,0 +1,67 @@
+name: aura_bac
+description: AURA - Réussis ton BAC avec confiance. Application de préparation au BAC en Côte d'Ivoire.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Navigation
+  go_router: ^13.2.0
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.2
+
+  # UI & Fonts
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+  cached_network_image: ^3.3.1
+  lottie: ^3.1.0
+  shimmer: ^3.0.0
+
+  # Charts
+  fl_chart: ^0.68.0
+
+  # PDF
+  pdf: ^3.10.8
+  printing: ^5.12.0
+
+  # Utilities
+  uuid: ^4.3.3
+  intl: ^0.19.0
+  path_provider: ^2.1.2
+  flutter_launcher_icons: ^0.13.1
+  percent_indicator: ^4.2.3
+  smooth_page_indicator: ^1.1.0
+  iconsax: ^0.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.9
+  riverpod_generator: ^2.3.11
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  adaptive_icon_background: "#2563EB"
+  adaptive_icon_foreground: "assets/icons/app_icon_foreground.png"
