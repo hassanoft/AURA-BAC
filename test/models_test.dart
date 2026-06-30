@@ -1,6 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:aura_bac/data/models/series_model.dart';
 import 'package:aura_bac/data/models/subject_model.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('SeriesModel', () {
@@ -29,18 +29,18 @@ void main() {
       expect(
         ids,
         {
-          'francais',
-          'philosophie',
-          'mathematiques',
-          'histoire_geo',
-          'svt',
-          'physique_chimie',
-          'anglais',
-          'espagnol',
           'allemand',
-          'economie',
+          'anglais',
           'comptabilite',
+          'economie',
+          'espagnol',
+          'francais',
+          'histoire_geo',
           'informatique',
+          'mathematiques',
+          'philosophie',
+          'physique_chimie',
+          'svt',
         },
       );
     });
