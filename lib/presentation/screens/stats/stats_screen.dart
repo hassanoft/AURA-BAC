@@ -124,7 +124,7 @@ class StatsScreen extends ConsumerWidget {
                           .asMap()
                           .entries
                           .map((e) =>
-                              FlSpot(e.key.toDouble(), e.value.percentage))
+                              FlSpot(e.key.toDouble(), (e.value as dynamic).percentage))
                           .toList(),
                       isCurved: true,
                       color: AppColors.primary,
@@ -146,8 +146,9 @@ class StatsScreen extends ConsumerWidget {
           const SectionTitle(title: 'Progression par Matière'),
           const SizedBox(height: 12),
           ...allSubjects.take(8).map((subject) {
-            final progress = progressRepo.getProgress(subject.id);
-            final color = SubjectColor.forId(subject.id);
+            final typedSubject = subject as dynamic;
+            final progress = progressRepo.getProgress(typedSubject.id);
+            final color = SubjectColor.forId(typedSubject.id);
             return Container(
               margin: const EdgeInsets.only(bottom: 14),
               child: Column(
@@ -155,12 +156,12 @@ class StatsScreen extends ConsumerWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(SubjectColor.iconForId(subject.id),
+                      Icon(SubjectColor.iconForId(typedSubject.id),
                           size: 16, color: color),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          subject.name,
+                          typedSubject.name ?? 'Matière',
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w600,
                               ),
@@ -206,7 +207,9 @@ class StatsScreen extends ConsumerWidget {
             )
           else
             ...results.take(10).map((result) {
-              final color = result.percentage >= 50
+              final typedResult = result as dynamic;
+              final percentage = (typedResult.percentage as num?)?.toDouble() ?? 0;
+              final color = percentage >= 50
                   ? AppColors.success
                   : AppColors.error;
               return Container(
@@ -228,7 +231,7 @@ class StatsScreen extends ConsumerWidget {
                       ),
                       child: Center(
                         child: Text(
-                          '${result.percentage.toStringAsFixed(0)}%',
+                          '${percentage.toStringAsFixed(0)}%',
                           style: TextStyle(
                             color: color,
                             fontWeight: FontWeight.w800,
@@ -243,7 +246,7 @@ class StatsScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            result.quizTitle,
+                            typedResult.quizTitle ?? 'Quiz',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context)
@@ -251,9 +254,8 @@ class StatsScreen extends ConsumerWidget {
                                 .bodyMedium
                                 ?.copyWith(fontWeight: FontWeight.w600),
                           ),
-                          // ✅ LIGNE CORRIGÉE ICI
                           Text(
-                            'Score : ${result.percentage.toStringAsFixed(0)}%',
+                            'Score : ${percentage.toStringAsFixed(0)}%',
                             style: const TextStyle(
                               fontSize: 11,
                               color: AppColors.textSecondaryLight,
