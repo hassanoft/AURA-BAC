@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../data/repositories/repositories.dart';
-import '../data/models/series_model.dart';
-import '../data/models/subject_model.dart';
-import '../data/models/course_model.dart';
-import '../data/models/quiz_model.dart';
-import '../data/models/favorite_model.dart';
-import '../core/constants/app_constants.dart';
+import '../../data/repositories/repositories.dart';
+import '../../data/models/series_model.dart';
+import '../../data/models/subject_model.dart';
+import '../../data/models/course_model.dart';
+import '../../data/models/quiz_model.dart';
+import '../../data/models/favorite_model.dart';
+import '../../core/constants/app_constants.dart';
 import 'dart:math';
 
 // ─── REPOSITORY PROVIDERS ────────────────────────────────────────────────────
@@ -252,11 +252,11 @@ class QuizStateNotifier extends StateNotifier<QuizState> {
 
   Future<QuizResult> saveResult(String resultId) async {
     final quiz = state.quiz!;
-    int score = 0;
+    double score = 0; // ✅ Changé de int à double
     int correct = 0;
     for (int i = 0; i < quiz.questions.length; i++) {
       if (state.userAnswers[i] == quiz.questions[i].correctIndex) {
-        score += quiz.questions[i].points;
+        score += quiz.questions[i].points.toDouble(); // ✅ Conversion en double
         correct++;
       }
     }
@@ -268,7 +268,7 @@ class QuizStateNotifier extends StateNotifier<QuizState> {
       quizId: quiz.id,
       quizTitle: quiz.title,
       subjectId: quiz.subjectId,
-      score: score,
+      score: score, // ✅ Maintenant c'est un double
       totalPoints: quiz.totalPoints,
       correctAnswers: correct,
       totalQuestions: quiz.questions.length,
