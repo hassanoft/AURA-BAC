@@ -251,8 +251,9 @@ class StatsScreen extends ConsumerWidget {
                                 .bodyMedium
                                 ?.copyWith(fontWeight: FontWeight.w600),
                           ),
+                          // ✅ LIGNE CORRIGÉE ICI
                           Text(
-                            '${result.correctAnswers}/${result.totalQuestions} correctes',
+                            'Score : ${result.percentage.toStringAsFixed(0)}%',
                             style: const TextStyle(
                               fontSize: 11,
                               color: AppColors.textSecondaryLight,
